@@ -1,2 +1,2 @@
 # zipfd
-Simple Chrome extension to run the Zipf distribution on the current page
+Simple Chrome extension to graph word frequency on the current page
