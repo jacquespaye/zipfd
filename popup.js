@@ -99,17 +99,17 @@ function createLogChart(data) {
 
 }
 
+document.addEventListener('DOMContentLoaded', function() {    
+  document.getElementById('zipf-button').addEventListener('click', function() {    
+    // Send a message to the service worker
+    // // In popup.js
+chrome.runtime.sendMessage({command: "getWordsFromActiveTab"}, function(response) {
+  if (response && response.words) {
+    createBarChart(response.words);
+    createLogChart(response.words);
+  }
+});
 
-document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('zipf-button').addEventListener('click', function() {
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      chrome.tabs.sendMessage(tabs[0].id, {command: "getWords"}, function(response) {
-        if (response && response.words) {
-          createBarChart(response.words);
-          createLogChart(response.words);
-        }
-      });
-    });
-  });
+  });    
 });
 
